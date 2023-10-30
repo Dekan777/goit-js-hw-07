@@ -20,11 +20,8 @@ const galleryCreate = galleryItems.map(createGalleryItem).join("");
 gallery.insertAdjacentHTML("beforeend", galleryCreate);
 
 document.addEventListener("click", (event) => {
-  //запрет
-//   event.preventDefault();
-
   const selectedElement = event.target.closest(".gallery__link");
- 
+
   if (selectedElement) {
     // Оброботка элемента
     // console.log('елемент:', selectedElement);
