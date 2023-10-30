@@ -21,17 +21,17 @@ gallery.insertAdjacentHTML("beforeend", galleryCreate);
 
 document.addEventListener("click", (event) => {
   //запрет
-  event.preventDefault();
+//   event.preventDefault();
 
   const selectedElement = event.target.closest(".gallery__link");
-
+ 
   if (selectedElement) {
     // Оброботка элемента
     // console.log('елемент:', selectedElement);
     // console.log(event.target);
     // const url = selectedElement.href;
     // console.log(url);
-
+    event.preventDefault();
     const instance = basicLightbox.create(`
         <img src="${selectedElement.href}" width="800" height="600">
          `);
