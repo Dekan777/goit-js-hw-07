@@ -3,7 +3,6 @@ import { galleryItems } from "./gallery-items.js";
 
 const gallery = document.querySelector(".gallery");
 
-
 const createGalleryItem = ({ preview, original, description }) => {
   return `<li class="gallery__item">
                 <a class="gallery__link" href="${original}">
@@ -17,48 +16,32 @@ const createGalleryItem = ({ preview, original, description }) => {
             </li>`;
 };
 
-
 const galleryCreate = galleryItems.map(createGalleryItem).join("");
 gallery.insertAdjacentHTML("beforeend", galleryCreate);
 
+document.addEventListener("click", (event) => {
+  //запрет
+  event.preventDefault();
 
+  const selectedElement = event.target.closest(".gallery__link");
 
+  if (selectedElement) {
+    // Оброботка элемента
+    // console.log('елемент:', selectedElement);
+    // console.log(event.target);
+    // const url = selectedElement.href;
+    // console.log(url);
 
+    const instance = basicLightbox.create(`
+        <img src="${selectedElement.href}" width="800" height="600">
+         `);
 
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        instance.close();
+      }
+    });
 
-// 1.Создание и рендер разметки по массиву 
-// данных galleryItems и предоставленному 
-// шаблону элемента галереи.  (+)
-
-// 2.Реализация делегирования на ul.gallery 
-// и получение url большого изображения. (-)
-
-// 3. Подключение скрипта и стилей библиотеки 
-// модального окна basicLightbox. Используй 
-// CDN сервис jsdelivr и добавь в проект ссылки
-//  на минифицированные (.min) файлы
-//   библиотеки.   (-)
-
-// 4.Открытие модального окна по клику на 
-// элементе галереи. Для этого ознакомься
-//  с документацией и примерами.   (-)
-
-// 5. Замена значения атрибута src элемента
-//  <img> в модальном окне перед открытием.
-//   Используй готовую разметку модального 
-//   окна с изображением из примеров 
-//   библиотеки basicLightbox.  (-) 
-
-// 6.Обрати внимание на то, что изображение 
-// обернуто в ссылку, а значит при клике по
-//  умолчанию пользователь будет перенаправлен
-//   на другую страницу. Запрети 
-//   это поведение по умолчанию.  (-)
-
-// 7.Добавь закрытие модального окна по
-//  нажатию клавиши Escape. Сделай так, 
-//  чтобы прослушивание клавиатуры было 
-//  только пока открыто модальное окно. У 
-//  библиотеки basicLightbox есть метод
-//   для программного закрытия модального
-//    окна.    (-)
+    instance.show();
+  }
+});
