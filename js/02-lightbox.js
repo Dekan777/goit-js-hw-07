@@ -1,7 +1,5 @@
-import { galleryItems } from './gallery-items.js';
+import { galleryItems } from "./gallery-items.js";
 // Change code below this line
-
-
 
 const gallery = document.querySelector(".gallery");
 
@@ -12,38 +10,24 @@ const createGalleryItem = ({ preview, original, description }) => {
                         class="gallery__image" 
                         src="${preview}" 
                         alt="${description}" 
-                        title="${description}"
                     />
                 </a>
             </li>`;
 };
 
-
-
 const galleryCreate = galleryItems.map(createGalleryItem).join("");
 gallery.insertAdjacentHTML("beforeend", galleryCreate);
 
 document.addEventListener("click", (event) => {
-    const selectedElement = event.target.closest(".gallery__image");
-  
-   
-    if (selectedElement) {
-      event.preventDefault();
+  const selectedElement = event.target.closest(".gallery__image");
 
-     const lightbox = new SimpleLightbox('.gallery a', { 
-        captionPosition: 'bottom',
-        captionDelay: 250,
-       
+  if (selectedElement) {
+    event.preventDefault();
+
+    const lightbox = new SimpleLightbox(".gallery a", {
+      captionPosition: "bottom",
+      captionDelay: 250,
+      captionsData: "alt",
     });
-    
-    }
-  
-  });
-
-
-
-
-
-//   new SimpleLightbox('.gallery__image a', { /* options */ });
-
-//   $('.gallery__image a').simpleLightbox({ /* options */ });
+  }
+});
