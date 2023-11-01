@@ -19,17 +19,8 @@ const createGalleryItem = ({ preview, original, description }) => {
 const galleryCreate = galleryItems.map(createGalleryItem).join("");
 gallery.insertAdjacentHTML("beforeend", galleryCreate);
 
-gallery.addEventListener("click", (event) => {
-  if (event.target.classList.contains("gallery__image")) {
- event.preventDefault();
-    // const selectedElement = event.target.closest(".gallery__image");
-    new SimpleLightbox(".gallery a", {
-      captionPosition: "bottom",
-      captionDelay: 250,
-      captionsData: "alt",
-    });
- return;
-
-  }
-
+new SimpleLightbox(".gallery a", {
+  captionPosition: "bottom",
+  captionDelay: 250,
+  captionsData: "alt",
 });
