@@ -29,6 +29,11 @@ gallery.addEventListener("click", (event) => {
         <img src="${selectedElement.href}" width="800" height="600">
     `,
       {
+        onShow: (instance) => {
+          gallery.addEventListener("keydown", closeOnEscape);
+        },
+      },
+      {
         onClose: (instance) => {
           gallery.removeEventListener("keydown", closeOnEscape);
         },
@@ -40,8 +45,6 @@ gallery.addEventListener("click", (event) => {
         instance.close();
       }
     };
-
-    gallery.addEventListener("keydown", closeOnEscape);
 
     instance.show();
   }
